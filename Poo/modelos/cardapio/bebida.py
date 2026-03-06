@@ -9,3 +9,6 @@ class Bebida(ItemCardapio):
     def __str__(self):
         return self._nome
     
+    # Polimorfismo
+    def aplicar_desconto(self):
+        self._preco -= (self._preco * 0.08)
