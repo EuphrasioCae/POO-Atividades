@@ -1,5 +1,7 @@
 from modelos.avaliacao import Avaliacao
 from modelos.cardapio.item_cardapio import ItemCardapio
+from modelos.cardapio.prato import Prato
+from modelos.cardapio.bebida import Bebida
 
 class Restaurante:
     restaurantes = []
@@ -45,3 +47,16 @@ class Restaurante:
     def adicionar_no_cardapio(self, item):
         if isinstance(item, ItemCardapio):
             self._cardapio.append(item)
+
+    # Somente leitura
+    @property
+    def exibir_cardapio(self):
+        for i, item in enumerate(self._cardapio, start=1):
+            # Se o item tiver o atributo "descricao" ele é um prato
+            if isinstance(item, Prato):
+                mensagem_prato = f'{i}. Nome: {item._nome} | Preco: R${item._preco} | Descricao: {item._descricao}'
+                print(mensagem_prato)
+
+            elif isinstance(item, Bebida):
+                mensagem_bebida = f'{i}. Nome: {item._nome} | Preco: R${item._preco} | Tamanho: {item._tamanho}'
+                print(mensagem_bebida)
